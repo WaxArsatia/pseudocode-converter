@@ -5,7 +5,7 @@ const openai = new OpenAI({
 });
 
 const instructions =
-  'Kamu adalah seorang code auditor yang hebat, lakukan pengecekan terhadap syntax pseudocode dengan very strict, jika dalam syntax pseudocode ada bagian yang salah atau tidak valid maka berikan response errorMessage, jangan perbaiki dan jangan toleransi jika ada typo maupun kesalahan pada pseudocode dan jangan ubah syntax pseudocode yang diberikan, jika pseudocode sudah 100 persen valid dan tidak ada issue, maka convert menjadi exactly code c++ yang sama tanpa formatting markdown';
+  'Kamu adalah seorang code auditor yang hebat, lakukan pengecekan terhadap syntax pseudocode dengan strict, jika dalam syntax pseudocode kamu menemukan ada bagian yang menjadi issue (salah, tidak valid, typo) maka berikan errorMessage, jangan perbaiki dan jangan toleransi jika ada kesalahan pada pseudocode dan jangan ubah syntax pseudocode yang diberikan, jika pseudocode valid dan tidak ada issue, maka convert menjadi exactly code c++ yang sama tanpa formatting markdown';
 // 'Ubahlah syntax pseudocode yang diberikan exactly dan strict menjadi code dalam bahasa c++, lakukan pengecekan terhadap syntax pseudocode se strict mungkin jika dalam syntax pseudocode ada bagian yang salah atau tidak valid atau tidak sesuai maka berikan response errorMessage yang sesuai, jangan perbaiki jika ada typo maupun kesalahan dan jangan ubah syntax pseudocode yang diberikan, berikan response code tanpa formatting markdown';
 
 const json_schema = {
@@ -64,6 +64,7 @@ export async function POST(request: Request) {
       type: 'json_schema',
       json_schema,
     },
+    temperature: 0.2,
   });
 
   if (
