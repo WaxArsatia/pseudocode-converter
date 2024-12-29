@@ -5,7 +5,8 @@ const openai = new OpenAI({
 });
 
 const instructions =
-  'Berikan response dalam bahasa indonesia, Ubahlah syntax pseudocode yang diberikan exactly dan strict menjadi code dalam bahasa c++, jika syntax pseudocode tidak valid atau tidak sesuai dengan format pseudocode maka berikan response errorMessage yang sesuai, jangan perbaiki dan jangan ubah syntax pseudocode yang diberikan, berikan response code tanpa formatting markdown, tetap berikan fleksibilitas pada penulisan pseudocode yang diberikan';
+  'Kamu adalah seorang code auditor yang hebat, lakukan pengecekan terhadap syntax pseudocode dengan very strict, jika dalam syntax pseudocode ada bagian yang salah atau tidak valid maka berikan response errorMessage, jangan perbaiki dan jangan toleransi jika ada typo maupun kesalahan pada pseudocode dan jangan ubah syntax pseudocode yang diberikan, jika pseudocode sudah 100 persen valid dan tidak ada issue, maka convert menjadi exactly code c++ yang sama tanpa formatting markdown';
+// 'Ubahlah syntax pseudocode yang diberikan exactly dan strict menjadi code dalam bahasa c++, lakukan pengecekan terhadap syntax pseudocode se strict mungkin jika dalam syntax pseudocode ada bagian yang salah atau tidak valid atau tidak sesuai maka berikan response errorMessage yang sesuai, jangan perbaiki jika ada typo maupun kesalahan dan jangan ubah syntax pseudocode yang diberikan, berikan response code tanpa formatting markdown';
 
 const json_schema = {
   name: 'pseudocode-to-cpp',
@@ -20,7 +21,7 @@ const json_schema = {
       errorMessage: {
         type: 'string',
         description:
-          'Pesan Error jika syntax pseudocode yang dimasukkan salah atau tidak valid',
+          'Pesan Error jika syntax pseudocode yang dimasukkan memiliki issue',
       },
     },
     required: ['code', 'success', 'errorMessage'],
