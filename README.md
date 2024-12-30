@@ -1,3 +1,21 @@
+## Test Case
+
+```pseudo
+procedure kalkulasi(IN p : integer, l : integer)
+algoritma
+  output(p*l)
+endprocedure
+
+program hitungLuas
+kamus
+  p, l : integer
+algoritma
+  input(p)
+  input(l)
+  kalkulasi(x, y)
+endprogram
+```
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
